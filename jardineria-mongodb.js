@@ -114,3 +114,12 @@ db.empleado.insertMany([
     }
 ]);
 db.empleado.find();
+
+db.gama_producto.insertMany([
+    {
+        'gama':'Herbaceas',
+        'descripcion_texto':'Plantas para jardin decorativas',
+        'descripcion_html':null,
+        'imagen':null
+    },
+])
