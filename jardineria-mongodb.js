@@ -122,4 +122,48 @@ db.gama_producto.insertMany([
         'descripcion_html':null,
         'imagen':null
     },
+    {
+        'gama':'Herramientas',
+        'descripcion_texto':'Herramientas para todo tipo de acción',
+        'descripcion_html':null,
+        'imagen':null
+    },
+    {
+        'gama':'Aromáticas',
+        'descripcion_texto':'Plantas aromáticas',
+        'descripcion_html':null,
+        'imagen':null
+    },
+    {
+        'gama':'Frutales',
+        'descripcion_texto':'Árboles pequeños de producción frutal',
+        'descripcion_html':null,
+        'imagen':null
+    },
+    {
+        'gama':'Ornamentales',
+        'descripcion_texto':'Plantas vistosas para la decoración del jardín',
+        'descripcion_html':null,
+        'imagen':null
+    }
+])
+db.gama_producto.find();
+
+db.cliente.insertMany([
+    {
+        'codigo_cliente': 1,
+        'nombre_cliente': "Client 1",
+        'nombre_contacto': "Contact 1",
+        'apellido_contacto': "Contact Last Name 1",
+        'telefono': "123-456-7890",
+        'fax': "987-654-3210",
+        'linea_direccion1': "Address Line 1",
+        'linea_direccion2': "Address Line 2",
+        'ciudad': "City 1",
+        'region': "Region 1",
+        'pais': "Country 1",
+        'codigo_postal': "12345",
+        'codigo_empleado_rep_ventas': 101,
+        'limite_credito': 5000.00
+    }
 ])
