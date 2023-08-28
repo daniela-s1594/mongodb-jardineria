@@ -152,18 +152,218 @@ db.gama_producto.find();
 db.cliente.insertMany([
     {
         'codigo_cliente': 1,
-        'nombre_cliente': "Client 1",
-        'nombre_contacto': "Contact 1",
-        'apellido_contacto': "Contact Last Name 1",
-        'telefono': "123-456-7890",
-        'fax': "987-654-3210",
-        'linea_direccion1': "Address Line 1",
-        'linea_direccion2': "Address Line 2",
-        'ciudad': "City 1",
-        'region': "Region 1",
-        'pais': "Country 1",
-        'codigo_postal': "12345",
-        'codigo_empleado_rep_ventas': 101,
-        'limite_credito': 5000.00
+        'nombre_cliente': 'GoldFish Garden',
+        'nombre_contacto': 'Daniel G',
+        'apellido_contacto': 'GoldFish',
+        'telefono': '5556901745',
+        'fax': '5556901746',
+        'linea_direccion1': 'False Street 52 2 A',
+        'linea_direccion2': null,
+        'ciudad': 'San Francisco',
+        'region': null,
+        'pais': 'USA',
+        'codigo_postal': '24006',
+        'codigo_empleado_rep_ventas': 19,
+        'limite_credito': 3000
+    },
+    {
+        'codigo_cliente': 3,
+        'nombre_cliente': 'Gardening Associates',
+        'nombre_contacto': 'Anne',
+        'apellido_contacto': 'Wright',
+        'telefono': '5557410345',
+        'fax': '5557410346',
+        'linea_direccion1': 'Wall-e Avenue',
+        'linea_direccion2': null,
+        'ciudad': 'Miami',
+        'region':'Miami',
+        'pais': 'USA',
+        'codigo_postal': '24010',
+        'codigo_empleado_rep_ventas': 19,
+        'limite_credito': 6000
+    },
+    {
+        'codigo_cliente': 4,
+        'nombre_cliente': 'Gerudo Valley',
+        'nombre_contacto': 'Link',
+        'apellido_contacto': 'Flaute',
+        'telefono': '5552323129',
+        'fax': '5552323128',
+        'linea_direccion1': 'Oaks Avenue nº22',
+        'linea_direccion2': null,
+        'ciudad': 'New York',
+        'region':null,
+        'pais': 'USA',
+        'codigo_postal': '85495',
+        'codigo_empleado_rep_ventas': 22,
+        'limite_credito': 12000
+    },
+    {
+        'codigo_cliente': 5,
+        'nombre_cliente': 'Tendo Garden',
+        'nombre_contacto': 'Akane',
+        'apellido_contacto': 'Tendo',
+        'telefono': '55591233210',
+        'fax': '55591233211',
+        'linea_direccion1': 'Oaks Avenue nº22',
+        'linea_direccion2': 'Null Street nº69',
+        'ciudad': 'Miami',
+        'region':null,
+        'pais': 'USA',
+        'codigo_postal': '696969',
+        'codigo_empleado_rep_ventas': 22,
+        'limite_credito': 600000
+    },
+    {
+        'codigo_cliente': 5,
+        'nombre_cliente': 'Lasas S.A',
+        'nombre_contacto': 'Antonio',
+        'apellido_contacto': 'Lasas',
+        'telefono': '34916540145',
+        'fax': '34914851312',
+        'linea_direccion1': 'C/Leganes 15',
+        'linea_direccion2': null,
+        'ciudad': 'Fuenlabrada',
+        'region':'Madrid',
+        'pais': 'Spain',
+        'codigo_postal': '28945',
+        'codigo_empleado_rep_ventas': 8,
+        'limite_credito': 154310
     }
+])
+
+db.pedido.insertMany([
+    {
+        'codigo_pedido': 1,
+        'fecha_pedido': ISODate('2006-01-17'),
+        'fecha_esperada': ISODate('2006-01-19'),
+        'fecha_entrega': ISODate('2006-01-19'),
+        'estado': 'Entregado',
+        'comentarios': 'Pagado a plazos',
+        'codigo_cliente': 5
+    },
+    {
+        'codigo_pedido': 2,
+        'fecha_pedido': ISODate('2007-10-23'),
+        'fecha_esperada': ISODate('2007-10-28'),
+        'fecha_entrega': ISODate('2007-10-26'),
+        'estado': 'Entregado',
+        'comentarios': 'La entrega llego antes de lo esperado',
+        'codigo_cliente': 5
+    },
+    {
+        'codigo_pedido': 3,
+        'fecha_pedido': ISODate('2008-06-20'),
+        'fecha_esperada': ISODate('2008-06-25'),
+        'fecha_entrega': null,
+        'estado': 'Rechazado',
+        'comentarios': 'Limite de credito superado',
+        'codigo_cliente': 5
+    },
+    {
+        'codigo_pedido': 4,
+        'fecha_pedido': ISODate('2009-01-20'),
+        'fecha_esperada': ISODate('2009-01-26'),
+        'fecha_entrega': null,
+        'estado': 'Pendiente',
+        'comentarios': null,
+        'codigo_cliente': 5
+    },
+    {
+        'codigo_pedido': 8,
+        'fecha_pedido': ISODate('2008-11-09'),
+        'fecha_esperada': ISODate('2008-11-14'),
+        'fecha_entrega': ISODate('2008-11-14'),
+        'estado': 'Entregado',
+        'comentarios': 'El cliente paga la mitad con tarjeta y la otra mitad con efectivo, se le realizan dos facturas',
+        'codigo_cliente': 1
+    }
+])
+
+db.pedido.find();
+
+db.producto.insertMany([
+    {
+        'codigo_producto': '11679',
+        'nombre': 'Sierra de Poda 400MM',
+        'gama': 'Herramientas',
+        'dimensiones': '0,258',
+        'proveedor': 'HiperGarden Tools',
+        'descripcion': 'Gracias a la poda se consigue manipular un poco la naturaleza, dándole la forma que más nos guste. Este trabajo básico de jardinería también facilita que las plantas crezcan de un modo más equilibrado, y que las flores y los frutos vuelvan cada año con regularidad. Lo mejor es dar forma cuando los ejemplares son jóvenes, de modo que exijan pocos cuidados cuando sean adultos. Además de saber cuándo y cómo hay que podar, tener unas herramientas adecuadas para esta labor es también de vital importancia.',
+        'cantidad_en_stock': 15,
+        'precio_venta': 14,
+        'precio_proveedor': 11
+    },
+    {
+        'codigo_producto': '21636',
+        'nombre': 'Pala',
+        'gama': 'Herramientas',
+        'dimensiones': '0,156',
+        'proveedor': 'HiperGarden Tools',
+        'descripcion':'Palas de acero con cresta de corte en la punta para cortar bien el terreno. Buena penetración en tierras muy compactas.',
+        'cantidad_en_stock': 15,
+        'precio_venta': 14,
+        'precio_proveedor': 13
+    },
+    {
+        'codigo_producto': '22225',
+        'nombre': 'Rastrillo de Jardín',
+        'gama': 'Herramientas',
+        'dimensiones': '1,064',
+        'proveedor': 'HiperGarden Tools',
+        'descripcion':'Fabuloso rastillo que le ayudará a eliminar piedras, hojas, ramas y otros elementos incómodos en su jardín.',
+        'cantidad_en_stock': 15,
+        'precio_venta': 12,
+        'precio_proveedor': 11
+    },
+    {
+        'codigo_producto': '30310',
+        'nombre': 'Azadón',
+        'gama': 'Herramientas',
+        'dimensiones': '0,168',
+        'proveedor': 'HiperGarden Tools',
+        'descripcion':'Longitud:24cm. Herramienta fabricada en acero y pintura epoxi,alargando su durabilidad y preveniendo la corrosión.Diseño pensado para el ahorro de trabajo.',
+        'cantidad_en_stock': 15,
+        'precio_venta': 12,
+        'precio_proveedor': 11
+    },
+    {
+        'codigo_producto': 'AR-001',
+        'nombre': 'Ajedrea',
+        'gama': 'Aromáticas',
+        'dimensiones': '15-20',
+        'proveedor': 'Murcia Seasons',
+        'descripcion':'Planta aromática que fresca se utiliza para condimentar carnes y ensaladas, y seca, para pastas, sopas y guisantes.',
+        'cantidad_en_stock': 140,
+        'precio_venta': 1,
+        'precio_proveedor': 0
+    }
+])
+db.producto.find();
+
+db.detalle_pedido([
+    {
+        'codigo_pedido':1,
+        'codigo_producto': '11679',
+        'cantidad': 10,
+        'precio_unidad': 70,
+        'numero_linea': 3
+    },
+    {
+        'codigo_pedido':1,
+        'codigo_producto': '11679',
+        'cantidad': 10,
+        'precio_unidad': 70,
+        'numero_linea': 3
+    },
+])
+
+db.pago.insertMany([
+    {
+      codigo_cliente: 101,
+      forma_pago: "Tarjeta de crédito",
+      id_transaccion: "TRANS001",
+      fecha_pago: ISODate("2023-08-28"),
+      total: 100.00
+    },
 ])
