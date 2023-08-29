@@ -422,7 +422,7 @@ db.pago.find();
 
 
 // 1. Devuelve un listado con el código de oficina y la ciudad donde hay oficinas.
-db.oficina.find({'codigo_oficina','ciudad'});
+db.oficina.find({},{codigo_oficina:1, ciudad:2, _id:0});
 // 2. Devuelve un listado con la ciudad y el teléfono de las oficinas de España.
 db.oficina.find({'pais':'Espania'});
 // 3. Devuelve un listado con el nombre, apellidos y email de los empleados cuyo jefe tiene un código de jefe igual a 7.
