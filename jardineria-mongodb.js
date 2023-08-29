@@ -422,7 +422,6 @@ db.pago.find();
 
 
 // 1. Devuelve un listado con el código de oficina y la ciudad donde hay oficinas.
-
 db.oficina.find({'codigo_oficina','ciudad'});
 // 2. Devuelve un listado con la ciudad y el teléfono de las oficinas de España.
 db.oficina.find({'pais':'Espania'});
