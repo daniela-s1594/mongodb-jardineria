@@ -231,6 +231,7 @@ db.cliente.insertMany([
         'limite_credito': 154310
     }
 ])
+db.cliente.find()
 
 db.pedido.insertMany([
     {
@@ -341,7 +342,7 @@ db.producto.insertMany([
 ])
 db.producto.find();
 
-db.detalle_pedido([
+db.detalle_pedido.insertMany([
     {
         'codigo_pedido': 1,
         'codigo_producto': '11679',
@@ -383,9 +384,38 @@ db.detalle_pedido.find();
 db.pago.insertMany([
     {
         'codigo_cliente': 1,
-        'forma_pago': "Tarjeta de crédito",
-        'id_transaccion': "TRANS001",
-        'fecha_pago': ISODate("2023-08-28"),
-        'total': 100.00
+        'forma_pago': 'PayPal',
+        'id_transaccion': 'ak-std-000001',
+        'fecha_pago': ISODate('2008-11-10'),
+        'total': 2000
     },
+    {
+        'codigo_cliente': 1,
+        'forma_pago': 'PayPal',
+        'id_transaccion': 'ak-std-000002',
+        'fecha_pago': ISODate('2008-12-10'),
+        'total': 2000
+    },
+    {
+        'codigo_cliente': 3,
+        'forma_pago': 'PayPal',
+        'id_transaccion': 'ak-std-000003',
+        'fecha_pago': ISODate('2009-01-16'),
+        'total': 5000
+    },
+    {
+        'codigo_cliente': 3,
+        'forma_pago': 'PayPal',
+        'id_transaccion': 'ak-std-000004',
+        'fecha_pago': ISODate('2009-02-16'),
+        'total': 5000
+    },
+    {
+        'codigo_cliente': 3,
+        'forma_pago': 'PayPal',
+        'id_transaccion': 'ak-std-000005',
+        'fecha_pago': ISODate('2009-02-19'),
+        'total': 926
+    }
 ])
+db.pago.find();
