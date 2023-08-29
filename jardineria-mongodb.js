@@ -117,34 +117,34 @@ db.empleado.find();
 
 db.gama_producto.insertMany([
     {
-        'gama':'Herbaceas',
-        'descripcion_texto':'Plantas para jardin decorativas',
-        'descripcion_html':null,
-        'imagen':null
+        'gama': 'Herbaceas',
+        'descripcion_texto': 'Plantas para jardin decorativas',
+        'descripcion_html': null,
+        'imagen': null
     },
     {
-        'gama':'Herramientas',
-        'descripcion_texto':'Herramientas para todo tipo de acción',
-        'descripcion_html':null,
-        'imagen':null
+        'gama': 'Herramientas',
+        'descripcion_texto': 'Herramientas para todo tipo de acción',
+        'descripcion_html': null,
+        'imagen': null
     },
     {
-        'gama':'Aromáticas',
-        'descripcion_texto':'Plantas aromáticas',
-        'descripcion_html':null,
-        'imagen':null
+        'gama': 'Aromáticas',
+        'descripcion_texto': 'Plantas aromáticas',
+        'descripcion_html': null,
+        'imagen': null
     },
     {
-        'gama':'Frutales',
-        'descripcion_texto':'Árboles pequeños de producción frutal',
-        'descripcion_html':null,
-        'imagen':null
+        'gama': 'Frutales',
+        'descripcion_texto': 'Árboles pequeños de producción frutal',
+        'descripcion_html': null,
+        'imagen': null
     },
     {
-        'gama':'Ornamentales',
-        'descripcion_texto':'Plantas vistosas para la decoración del jardín',
-        'descripcion_html':null,
-        'imagen':null
+        'gama': 'Ornamentales',
+        'descripcion_texto': 'Plantas vistosas para la decoración del jardín',
+        'descripcion_html': null,
+        'imagen': null
     }
 ])
 db.gama_producto.find();
@@ -176,7 +176,7 @@ db.cliente.insertMany([
         'linea_direccion1': 'Wall-e Avenue',
         'linea_direccion2': null,
         'ciudad': 'Miami',
-        'region':'Miami',
+        'region': 'Miami',
         'pais': 'USA',
         'codigo_postal': '24010',
         'codigo_empleado_rep_ventas': 19,
@@ -192,7 +192,7 @@ db.cliente.insertMany([
         'linea_direccion1': 'Oaks Avenue nº22',
         'linea_direccion2': null,
         'ciudad': 'New York',
-        'region':null,
+        'region': null,
         'pais': 'USA',
         'codigo_postal': '85495',
         'codigo_empleado_rep_ventas': 22,
@@ -208,7 +208,7 @@ db.cliente.insertMany([
         'linea_direccion1': 'Oaks Avenue nº22',
         'linea_direccion2': 'Null Street nº69',
         'ciudad': 'Miami',
-        'region':null,
+        'region': null,
         'pais': 'USA',
         'codigo_postal': '696969',
         'codigo_empleado_rep_ventas': 22,
@@ -224,7 +224,7 @@ db.cliente.insertMany([
         'linea_direccion1': 'C/Leganes 15',
         'linea_direccion2': null,
         'ciudad': 'Fuenlabrada',
-        'region':'Madrid',
+        'region': 'Madrid',
         'pais': 'Spain',
         'codigo_postal': '28945',
         'codigo_empleado_rep_ventas': 8,
@@ -300,7 +300,7 @@ db.producto.insertMany([
         'gama': 'Herramientas',
         'dimensiones': '0,156',
         'proveedor': 'HiperGarden Tools',
-        'descripcion':'Palas de acero con cresta de corte en la punta para cortar bien el terreno. Buena penetración en tierras muy compactas.',
+        'descripcion': 'Palas de acero con cresta de corte en la punta para cortar bien el terreno. Buena penetración en tierras muy compactas.',
         'cantidad_en_stock': 15,
         'precio_venta': 14,
         'precio_proveedor': 13
@@ -311,7 +311,7 @@ db.producto.insertMany([
         'gama': 'Herramientas',
         'dimensiones': '1,064',
         'proveedor': 'HiperGarden Tools',
-        'descripcion':'Fabuloso rastillo que le ayudará a eliminar piedras, hojas, ramas y otros elementos incómodos en su jardín.',
+        'descripcion': 'Fabuloso rastillo que le ayudará a eliminar piedras, hojas, ramas y otros elementos incómodos en su jardín.',
         'cantidad_en_stock': 15,
         'precio_venta': 12,
         'precio_proveedor': 11
@@ -322,7 +322,7 @@ db.producto.insertMany([
         'gama': 'Herramientas',
         'dimensiones': '0,168',
         'proveedor': 'HiperGarden Tools',
-        'descripcion':'Longitud:24cm. Herramienta fabricada en acero y pintura epoxi,alargando su durabilidad y preveniendo la corrosión.Diseño pensado para el ahorro de trabajo.',
+        'descripcion': 'Longitud:24cm. Herramienta fabricada en acero y pintura epoxi,alargando su durabilidad y preveniendo la corrosión.Diseño pensado para el ahorro de trabajo.',
         'cantidad_en_stock': 15,
         'precio_venta': 12,
         'precio_proveedor': 11
@@ -333,7 +333,7 @@ db.producto.insertMany([
         'gama': 'Aromáticas',
         'dimensiones': '15-20',
         'proveedor': 'Murcia Seasons',
-        'descripcion':'Planta aromática que fresca se utiliza para condimentar carnes y ensaladas, y seca, para pastas, sopas y guisantes.',
+        'descripcion': 'Planta aromática que fresca se utiliza para condimentar carnes y ensaladas, y seca, para pastas, sopas y guisantes.',
         'cantidad_en_stock': 140,
         'precio_venta': 1,
         'precio_proveedor': 0
@@ -343,27 +343,49 @@ db.producto.find();
 
 db.detalle_pedido([
     {
-        'codigo_pedido':1,
+        'codigo_pedido': 1,
         'codigo_producto': '11679',
         'cantidad': 10,
         'precio_unidad': 70,
         'numero_linea': 3
     },
     {
-        'codigo_pedido':1,
-        'codigo_producto': '11679',
+        'codigo_pedido': 2,
+        'codigo_producto': '21636',
         'cantidad': 10,
         'precio_unidad': 70,
-        'numero_linea': 3
+        'numero_linea': 1
     },
+    {
+        'codigo_pedido': 3,
+        'codigo_producto': '22225',
+        'cantidad': 10,
+        'precio_unidad': 70,
+        'numero_linea': 2
+    },
+    {
+        'codigo_pedido': 4,
+        'codigo_producto': '30310',
+        'cantidad': 10,
+        'precio_unidad': 70,
+        'numero_linea': 4
+    },
+    {
+        'codigo_pedido': 8,
+        'codigo_producto': 'AR-001',
+        'cantidad': 10,
+        'precio_unidad': 70,
+        'numero_linea': 5
+    }
 ])
+db.detalle_pedido.find();
 
 db.pago.insertMany([
     {
-      codigo_cliente: 101,
-      forma_pago: "Tarjeta de crédito",
-      id_transaccion: "TRANS001",
-      fecha_pago: ISODate("2023-08-28"),
-      total: 100.00
+        'codigo_cliente': 1,
+        'forma_pago': "Tarjeta de crédito",
+        'id_transaccion': "TRANS001",
+        'fecha_pago': ISODate("2023-08-28"),
+        'total': 100.00
     },
 ])
