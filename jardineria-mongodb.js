@@ -441,14 +441,14 @@ db.pago.find({
         $gte: ISODate("2008-01-01T00:00:00Z"),
         $lt: ISODate("2009-01-01T00:00:00Z")
     }
-})
+});
 
 // 9. Devuelve un listado con el código de pedido, código de cliente, fecha esperada y fecha de entrega de los pedidos que no han sido entregados a tiempo.
 db.pedido.find({ fecha_entrega: null }, {
     'codigo_pedido': 1, 'codigo_cliente': 2,
     'fecha_esperada': 3,
     'fecha_entrega': 4, _id: 0
-})
+});
 // 10. Devuelve un listado con el código de pedido, código de cliente, fecha esperada y fecha de entrega de los pedidos cuya fecha de entrega ha sido al menos dos días antes de la fecha esperada.
 db.pedido.aggregate([
     {
@@ -470,14 +470,14 @@ db.pedido.aggregate([
             _id: 0
         }
     }
-])
+]);
 // 11. Devuelve un listado de todos los pedidos que fueron rechazados en 2009.
 db.pedido.find({
     fecha_pedido: {
         $gte: ISODate("2009-01-01T00:00:00Z"),
         $lt: ISODate("2010-01-01T00:00:00Z")
     }, estado: 'Rechazado'
-})
+});
 // 12. Devuelve un listado de todos los pedidos que han sido entregados en el mes de enero de cualquier año.
 /*
 db.pedido.find({
@@ -495,8 +495,7 @@ db.pedido.find({
             1
         ]
     }
-})
-
+});
 // 13. Devuelve un listado con todos los pagos que se realizaron en el año 2008 mediante Paypal. Ordene el resultado de mayor a menor.
 db.pago.find({
     forma_pago: "PayPal",
@@ -504,9 +503,10 @@ db.pago.find({
         $gte: ISODate("2008-01-01T00:00:00Z"),
         $lt: ISODate("2009-01-01T00:00:00Z")
     }
-}).sort({ total: -1 })
+}).sort({ total: -1 });
 // 14. Devuelve un listado con todas las formas de pago que aparecen en la tabla pago. Tenga en cuenta que no deben aparecer formas de pago repetidas.
-db.pago.find({},{forma_pago:1,_id:0})
+db.pago.find({}, { forma_pago: 1, _id: 0 });
 // 15. Devuelve un listado con todos los productos que pertenecen a la gama Ornamentales y que tienen más de 100 unidades en stock. El listado deberá estar ordenado por su precio de venta, mostrando en primer lugar los de mayor precio.
-
+db.producto.find({ gama: 'Ornamentales', cantidad_en_stock: { $gt: 100 } }).sort({ precio_venta: -1 });
 // 16. Devuelve un listado con todos los clientes que sean de la ciudad de Madrid y cuyo representante de ventas tenga el código de empleado 11 o 30
+db.cliente.find({ ciudad: 'Madrid', codigo_empleado_rep_ventas: { $in: [11, 30] } });
