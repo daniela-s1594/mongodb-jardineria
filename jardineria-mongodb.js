@@ -422,22 +422,91 @@ db.pago.find();
 
 
 // 1. Devuelve un listado con el código de oficina y la ciudad donde hay oficinas.
-db.oficina.find({},{codigo_oficina:1, ciudad:2, _id:0});
+db.oficina.find({}, { codigo_oficina: 1, ciudad: 2, _id: 0 });
 // 2. Devuelve un listado con la ciudad y el teléfono de las oficinas de España.
-db.oficina.find({'pais':'Espania'});
+db.oficina.find({ 'pais': 'Espania' }, { ciudad: 1, telefono: 2, _id: 0 });
 // 3. Devuelve un listado con el nombre, apellidos y email de los empleados cuyo jefe tiene un código de jefe igual a 7.
-db.empleado.find({'codigo_jefe': 7})
+db.empleado.find({ codigo_jefe: 7 }, { nombre: 1, apellido1: 2, apellido2: 3, email: 4, _id: 0 });
 // 4. Devuelve el nombre del puesto, nombre, apellidos y email del jefe de la empresa.
-db.empleado.find({})
+db.empleado.find({}, { nombre: 1, apellido1: 2, apellido2: 3, email: 4, _id: 0 });
 // 5. Devuelve un listado con el nombre, apellidos y puesto de aquellos empleados que no sean representantes de ventas.
+db.empleado.find({ puesto: { $ne: 'Representante Ventas' } }, { nombre: 1, apellido1: 2, apellido2: 3, puesto: 4, _id: 0 });
 // 6. Devuelve un listado con el nombre de los todos los clientes españoles.
+db.cliente.find({ pais: 'Spain' }, { nombre_cliente: 1, _id: 0 });
 // 7. Devuelve un listado con los distintos estados por los que puede pasar un pedido.
+db.pedido.find({}, { estado: 1, _id: 0 });
 // 8. Devuelve un listado con el código de cliente de aquellos clientes que realizaron algún pago en 2008. Tenga en cuenta que deberá eliminar aquellos códigos de cliente que aparezcan repetidos.
+db.pago.find({
+    fecha_pago: {
+        $gte: ISODate("2008-01-01T00:00:00Z"),
+        $lt: ISODate("2009-01-01T00:00:00Z")
+    }
+})
+
 // 9. Devuelve un listado con el código de pedido, código de cliente, fecha esperada y fecha de entrega de los pedidos que no han sido entregados a tiempo.
+db.pedido.find({ fecha_entrega: null }, {
+    'codigo_pedido': 1, 'codigo_cliente': 2,
+    'fecha_esperada': 3,
+    'fecha_entrega': 4, _id: 0
+})
 // 10. Devuelve un listado con el código de pedido, código de cliente, fecha esperada y fecha de entrega de los pedidos cuya fecha de entrega ha sido al menos dos días antes de la fecha esperada.
+db.pedido.aggregate([
+    {
+        $match: {
+            $expr: {
+                $gte: [
+                    { $subtract: ["$fecha_esperada", "$fecha_entrega"] },
+                    2 * 24 * 60 * 60 * 1000 // Dos días en milisegundos
+                ]
+            }
+        }
+    },
+    {
+        $project: {
+            'codigo_pedido': 1,
+            'codigo_cliente': 2,
+            'fecha_esperada': 3,
+            'fecha_entrega': 4,
+            _id: 0
+        }
+    }
+])
 // 11. Devuelve un listado de todos los pedidos que fueron rechazados en 2009.
+db.pedido.find({
+    fecha_pedido: {
+        $gte: ISODate("2009-01-01T00:00:00Z"),
+        $lt: ISODate("2010-01-01T00:00:00Z")
+    }, estado: 'Rechazado'
+})
 // 12. Devuelve un listado de todos los pedidos que han sido entregados en el mes de enero de cualquier año.
+/*
+db.pedido.find({
+    fecha_entrega: {
+        $gte: ISODate("año-01-01T00:00:00Z"),
+        $lt: ISODate("año-02-01T00:00:00Z")
+    }
+})
+No me dio, pero, hay otra manera :)
+*/
+db.pedido.find({
+    $expr: {
+        $eq: [
+            { $month: "$fecha_entrega" },
+            1
+        ]
+    }
+})
+
 // 13. Devuelve un listado con todos los pagos que se realizaron en el año 2008 mediante Paypal. Ordene el resultado de mayor a menor.
+db.pago.find({
+    forma_pago: "PayPal",
+    fecha_pago: {
+        $gte: ISODate("2008-01-01T00:00:00Z"),
+        $lt: ISODate("2009-01-01T00:00:00Z")
+    }
+}).sort({ total: -1 })
 // 14. Devuelve un listado con todas las formas de pago que aparecen en la tabla pago. Tenga en cuenta que no deben aparecer formas de pago repetidas.
+db.pago.find({},{forma_pago:1,_id:0})
 // 15. Devuelve un listado con todos los productos que pertenecen a la gama Ornamentales y que tienen más de 100 unidades en stock. El listado deberá estar ordenado por su precio de venta, mostrando en primer lugar los de mayor precio.
+
 // 16. Devuelve un listado con todos los clientes que sean de la ciudad de Madrid y cuyo representante de ventas tenga el código de empleado 11 o 30

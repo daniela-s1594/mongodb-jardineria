@@ -5,6 +5,6 @@
  3-*insertOne()* inserta un documento(info/row/registro), mientras que el 
  *insertMany* inserta varios
  4-Para buscar/consultar documentos usamos *find()* para buscar todos o varios y para buscar solo uno *findOne()*
- 5-para buscar unos datos especificos en los documentos usamos el *find()* pero lo usaremos así *find({Este campo es vacio para que busque todos los documentos },{En este se colocan los datos que quieras buscar. Ejemplo : pais:'Colombia'})*
+ 5-para buscar unos datos especificos en los documentos usamos el *find()* pero lo usaremos así *find({Este campo escribe la condicion o lo que necesitas en especifico,ejemplo:departamento:'Choco',lo buscara en todos los documentos },{En este se colocan los datos que quieras que aparezcan . Ejemplo :telefono, pais:'Colombia'})*
  Algunas veces se usan numeros para el orden, ejemplo *find({},{codigo_oficina:1, ciudad:2, _id:0})* el 0 en el id es para que no lo muestre, el 1 y 2 es el orden en que quieres que aparezca.
 
