@@ -436,7 +436,7 @@ db.cliente.find({ pais: 'Spain' }, { nombre_cliente: 1, _id: 0 });
 // 7. Devuelve un listado con los distintos estados por los que puede pasar un pedido.
 db.pedido.distinct('estado');
 // 8. Devuelve un listado con el código de cliente de aquellos clientes que realizaron algún pago en 2008. Tenga en cuenta que deberá eliminar aquellos códigos de cliente que aparezcan repetidos.
-db.pago.distinct('codigo_cliente',{
+db.pago.distinct('codigo_cliente', {
     fecha_pago: {
         $gte: ISODate("2008-01-01T00:00:00Z"),
         $lt: ISODate("2009-01-01T00:00:00Z")
@@ -444,11 +444,27 @@ db.pago.distinct('codigo_cliente',{
 });
 
 // 9. Devuelve un listado con el código de pedido, código de cliente, fecha esperada y fecha de entrega de los pedidos que no han sido entregados a tiempo.
-db.pedido.find({ fecha_entrega: null }, {
-    'codigo_pedido': 1, 'codigo_cliente': 2,
-    'fecha_esperada': 3,
-    'fecha_entrega': 4, _id: 0
-});
+db.pedido.aggregate([
+    {
+        $match: {
+            $expr: {
+                $gt: [
+                    { $subtract: ["$fecha_entrega", "$fecha_esperada"] },
+                    0 * 0 * 0 * 0
+                ]
+            }
+        }
+    },
+    {
+        $project: {
+            'codigo_pedido': 1,
+            'codigo_cliente': 2,
+            'fecha_esperada': 3,
+            'fecha_entrega': 4,
+            _id: 0
+        }
+    }
+]);
 // 10. Devuelve un listado con el código de pedido, código de cliente, fecha esperada y fecha de entrega de los pedidos cuya fecha de entrega ha sido al menos dos días antes de la fecha esperada.
 db.pedido.aggregate([
     {
@@ -509,4 +525,4 @@ db.pago.distinct("forma_pago");
 // 15. Devuelve un listado con todos los productos que pertenecen a la gama Ornamentales y que tienen más de 100 unidades en stock. El listado deberá estar ordenado por su precio de venta, mostrando en primer lugar los de mayor precio.
 db.producto.find({ gama: 'Ornamentales', cantidad_en_stock: { $gt: 100 } }).sort({ precio_venta: -1 });
 // 16. Devuelve un listado con todos los clientes que sean de la ciudad de Madrid y cuyo representante de ventas tenga el código de empleado 11 o 30
-db.cliente.find({ ciudad: 'Madrid', codigo_empleado_rep_ventas: { $in: [11,30] } });
+db.cliente.find({ ciudad: 'Madrid', codigo_empleado_rep_ventas: { $in: [11, 30] } });
