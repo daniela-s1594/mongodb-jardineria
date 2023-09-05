@@ -434,9 +434,9 @@ db.empleado.find({ puesto: { $ne: 'Representante Ventas' } }, { nombre: 1, apell
 // 6. Devuelve un listado con el nombre de los todos los clientes españoles.
 db.cliente.find({ pais: 'Spain' }, { nombre_cliente: 1, _id: 0 });
 // 7. Devuelve un listado con los distintos estados por los que puede pasar un pedido.
-db.pedido.find({}, { estado: 1, _id: 0 });
+db.pedido.distinct('estado');
 // 8. Devuelve un listado con el código de cliente de aquellos clientes que realizaron algún pago en 2008. Tenga en cuenta que deberá eliminar aquellos códigos de cliente que aparezcan repetidos.
-db.pago.find({
+db.pago.distinct('codigo_cliente',{
     fecha_pago: {
         $gte: ISODate("2008-01-01T00:00:00Z"),
         $lt: ISODate("2009-01-01T00:00:00Z")
@@ -505,8 +505,8 @@ db.pago.find({
     }
 }).sort({ total: -1 });
 // 14. Devuelve un listado con todas las formas de pago que aparecen en la tabla pago. Tenga en cuenta que no deben aparecer formas de pago repetidas.
-db.pago.find({}, { forma_pago: 1, _id: 0 });
+db.pago.distinct("forma_pago");
 // 15. Devuelve un listado con todos los productos que pertenecen a la gama Ornamentales y que tienen más de 100 unidades en stock. El listado deberá estar ordenado por su precio de venta, mostrando en primer lugar los de mayor precio.
 db.producto.find({ gama: 'Ornamentales', cantidad_en_stock: { $gt: 100 } }).sort({ precio_venta: -1 });
 // 16. Devuelve un listado con todos los clientes que sean de la ciudad de Madrid y cuyo representante de ventas tenga el código de empleado 11 o 30
-db.cliente.find({ ciudad: 'Madrid', codigo_empleado_rep_ventas: { $in: [{$or:[{11},{30}]}] } });
+db.cliente.find({ ciudad: 'Madrid', codigo_empleado_rep_ventas: { $in: [11,30] } });
